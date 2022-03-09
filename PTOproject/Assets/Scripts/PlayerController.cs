@@ -54,4 +54,10 @@ public class PlayerController : MonoBehaviour
     {
         playerMovement();
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.tag == "PickUp")
+        hit.gameObject.GetComponent<PickupController>().Picked();
+    }
 }
