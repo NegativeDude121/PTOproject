@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Clock : PickupController
+public class Clock : PickUp
 {
-    public int addTime = 10;
-    public int minusTime = 10;
-    public bool timeAdd = true;
+    public bool addTime;
+    public uint time = 5;
 
     public override void Picked()
     {
-        if (timeAdd)
-        {
-            GameManager.gameManager.AddTime(addTime);  
-        }
+        int sign;
+        if (addTime)
+            sign = 1;
         else
-        {
-            GameManager.gameManager.RemoveTime(minusTime);
-        }
+            sign = -1;
+        GameManager.gameManager.AddTime((int)time * sign);
         Destroy(this.gameObject);
+    }
+
+    void Update()
+    {
+        Rotation();        
     }
 }

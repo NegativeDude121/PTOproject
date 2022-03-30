@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1804048722125544821}
   - component: {fileID: 1804048722125544818}
   - component: {fileID: 1804048722125544819}
-  - component: {fileID: 1804048722125544823}
+  - component: {fileID: 7157933783655813852}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -103,7 +103,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1804048722125544823
+--- !u!114 &7157933783655813852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,17 +112,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1804048722125544816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a16a68a2d8fcabe4c9a99ec4712cbe0d, type: 3}
+  m_Script: {fileID: 11500000, guid: a8e851c9e0922ec49b4ede4a285b84f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 12
-  speedLow: 4
-  speedHigh: 22
-  speedStandard: 12
+  groundCheck: {fileID: 1804048722246514809}
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  groundCheck: {fileID: 1804048722246514809}
+  speed: 12
 --- !u!1 &1804048722149444280
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +131,7 @@ GameObject:
   - component: {fileID: 1804048722149444285}
   - component: {fileID: 1804048722149444282}
   - component: {fileID: 1804048722149444283}
-  - component: {fileID: 1804048722149444284}
+  - component: {fileID: 4885519228113018971}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -207,7 +204,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804048722149444280}
   m_Enabled: 1
---- !u!114 &1804048722149444284
+--- !u!114 &4885519228113018971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,10 +213,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1804048722149444280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a747451017add474aa29119925cd90b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 9dfe59768b6411647bf85bd74e64d3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSpeed: 5000
+  mouseSensivity: 2500
 --- !u!1 &1804048722246514790
 GameObject:
   m_ObjectHideFlags: 0

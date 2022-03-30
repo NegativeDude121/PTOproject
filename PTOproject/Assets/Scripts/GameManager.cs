@@ -5,16 +5,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
-    [SerializeField]int timeLeft;
-    bool gamePaused = false;
-    bool gameWon = false;
-    bool endGame = false;
-    public int points = 0;
-    public int redKey;
-    public int greenKey;
-    public int purpleKey;
 
-    // Start is called before the first frame update
+    [SerializeField] int timeToEnd;
+    bool gamePaused = false;
+    bool endGame = false;
+    bool win = false;
+    public int points = 0;
+    public int redKey = 0;
+    public int greenKey = 0;
+    public int goldKey = 0;
+
     void Start()
     {
         if(gameManager == null)
@@ -22,125 +22,112 @@ public class GameManager : MonoBehaviour
             gameManager = this;
         }
 
-        if (timeLeft <= 0)
+        if(timeToEnd <= 0)
         {
-            timeLeft = 100;
+            timeToEnd = 100;
         }
 
-        InvokeRepeating("Stopper", 2, 1);
+        InvokeRepeating("Stopper", 0, 1);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        pausedCheck();
-        PickupCheck();
+        PauseCheck();
+        PickUpCheck();
     }
 
     void Stopper()
     {
-        timeLeft--;
-        Debug.Log("Time: " + timeLeft + "s");
+        timeToEnd--;
+        //Debug.Log($"Time: {timeToEnd} s");
 
-        if(timeLeft <= 0)
+        if(timeToEnd <= 0)
         {
+            timeToEnd = 0;
             endGame = true;
-            timeLeft = 0;
         }
 
-        if (endGame)
+        if(endGame)
         {
             EndGame();
         }
     }
 
-    public void pauseGame()
+    public void PauseGame()
     {
         Debug.Log("Game Paused");
         Time.timeScale = 0f;
         gamePaused = true;
     }
 
-    public void resumeGame()
+    public void ResumeGame()
     {
         Debug.Log("Game Resumed");
         Time.timeScale = 1f;
         gamePaused = false;
     }
 
-    void pausedCheck()
+    void PauseCheck()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (gamePaused)
+            if(gamePaused)
             {
-                resumeGame();
+                ResumeGame();
             }
-
             else
             {
-                pauseGame();
+                PauseGame();
             }
         }
-        
     }
 
     public void EndGame()
     {
         CancelInvoke("Stopper");
-
-        if(gameWon)
+        if (win)
         {
-            Debug.Log("You win");
+            Debug.Log("You win!!! Reload?");
         }
         else
         {
-            Debug.Log("You lose");
+            Debug.Log("You lose!!! Reload?");
         }
     }
 
     public void AddPoints(int point)
     {
-        points = point + points;
+        points += point;
     }
 
     public void AddTime(int addTime)
     {
-        timeLeft += addTime;
+        timeToEnd += addTime;
     }
 
-    public void RemoveTime(int minusTime)
-    {
-        timeLeft -= minusTime;
-    }
-
-    public void FreezeTime(int freezeTime)
+    public void FreezeTime(int freeze)
     {
         CancelInvoke("Stopper");
-        InvokeRepeating("Stopper", freezeTime, 1);
+        InvokeRepeating("Stopper", freeze, 1);
     }
 
     public void AddKey(KeyColor color)
     {
-        if(color == KeyColor.Green)
-        {
+        if (color == KeyColor.Gold)
+            goldKey++;
+        else if (color == KeyColor.Green)
             greenKey++;
-        }
-        if (color == KeyColor.Red)
-        {
+        else if (color == KeyColor.Red)
             redKey++;
-        }
-        if (color == KeyColor.Purple)
-        {
-            purpleKey++;
-        }
     }
 
-    void PickupCheck()
+    void PickUpCheck()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.L))
         {
-            Debug.Log("RedKey: " + redKey + " GreenKey: " + greenKey + " PurpleKey: " + purpleKey + " Points: " + points);
+            Debug.Log($"Actual Time: {timeToEnd} s");
+            Debug.Log($"Red key: {redKey}, green: {greenKey}, gold: {goldKey}");
+            Debug.Log($"Points: {points}");
         }
     }
 }

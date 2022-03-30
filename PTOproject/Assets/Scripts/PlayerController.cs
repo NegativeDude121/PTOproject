@@ -4,60 +4,62 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    public float movementSpeed = 12f;
-    public float speedLow = 8f;
-    public float speedHigh = 16f;
-    public float speedStandard = 12f;
-    CharacterController characterController;
-    public LayerMask groundMask;
     public Transform groundCheck;
+    public LayerMask groundMask;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    float speed = 12f;
+
+    Vector3 velocity;
+    CharacterController characterController;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
     }
 
-    void playerMovement()
+    void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        PlayerMove();
+    }
 
-        RaycastHit hit;
+    void PlayerMove()
+    {
+        float x = Input.GetAxis("Horizontal"),
+            z = Input.GetAxis("Vertical");
 
-        if(Physics.Raycast(groundCheck.position, transform.TransformDirection(Vector3.down), out hit, 0.8f, groundMask))
+        Vector3 move = transform.right * x + transform.forward * z; // moving with object's rotation
+        //Vector3 move = Vector3.right * x + Vector3.forward * z; // ignore rotation
+        characterController.Move(move * speed * Time.deltaTime);
+
+        RaycastHit raycastHit;
+        if (Physics.Raycast(
+            groundCheck.position, 
+            transform.TransformDirection(Vector3.down), 
+            out raycastHit, 
+            0.4f, 
+            groundMask)
+            )
         {
-            string terrainType;
-            terrainType = hit.collider.gameObject.tag;
-
-            switch (terrainType)
+            string terrainType = raycastHit.collider.gameObject.tag;
+            switch(terrainType)
             {
                 case "Low":
-                    movementSpeed = speedLow;
+                    speed = 3;
                     break;
                 case "High":
-                    movementSpeed = speedHigh;
+                    speed = 20;
                     break;
                 default:
-                    movementSpeed = speedStandard;
+                    speed = 12;
                     break;
             }
         }
-
-        Vector3 move = transform.right * x + transform.forward * z;
-        characterController.Move(move * movementSpeed * Time.deltaTime);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        playerMovement();
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.gameObject.tag == "PickUp")
-        hit.gameObject.GetComponent<PickupController>().Picked();
+        if (hit.gameObject.tag == "PickUp")
+            hit.gameObject.GetComponent<PickUp>().Picked();
     }
 }

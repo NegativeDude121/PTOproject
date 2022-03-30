@@ -9,9 +9,9 @@ public class PortalCamera : MonoBehaviour
     public Transform otherPortal;
     float myAngle;
 
-    public void SetMyAngle(float angle)
+    private void Update()
     {
-        myAngle = angle;
+        PortalCameraController();
     }
 
     void PortalCameraController()
@@ -21,34 +21,28 @@ public class PortalCamera : MonoBehaviour
 
         float angularDifferenceBetweenPortalRotations = Quaternion.Angle(portal.rotation, otherPortal.rotation);
 
-        if(myAngle == 90f || myAngle == 270f)
+        if (myAngle == 90 || myAngle == 270)
         {
-            angularDifferenceBetweenPortalRotations -= 90f;
+            angularDifferenceBetweenPortalRotations -= 90;
         }
 
-        Quaternion portalRotationDifference = Quaternion.AngleAxis(angularDifferenceBetweenPortalRotations, Vector3.up);
+        Quaternion portalRotationalDifference = Quaternion.AngleAxis(angularDifferenceBetweenPortalRotations, Vector3.up);
 
-        Vector3 newCameraDirection = portalRotationDifference * playerCamera.forward;
+        Vector3 newCameraDirection = portalRotationalDifference * playerCamera.forward;
 
-        if (myAngle == 90f || myAngle == 270f)
+        if (myAngle == 90 || myAngle == 270)
         {
-            newCameraDirection = new Vector3(newCameraDirection.z * -1, newCameraDirection.y, newCameraDirection.x);
+            newCameraDirection = new Vector3(newCameraDirection.z * (-1), newCameraDirection.y, newCameraDirection.x);
         }
         else
         {
-            newCameraDirection = new Vector3(newCameraDirection.x * -1, newCameraDirection.y, newCameraDirection.z * -1);
+            newCameraDirection = new Vector3(newCameraDirection.x * (-1), newCameraDirection.y, newCameraDirection.z * (-1));
         }
+        transform.rotation = Quaternion.LookRotation(newCameraDirection, Vector3.up);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetMyAngle(float angle)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        PortalCameraController();
+        myAngle = angle;
     }
 }

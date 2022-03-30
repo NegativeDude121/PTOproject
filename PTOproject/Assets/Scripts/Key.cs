@@ -2,7 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : PickupController
+public enum KeyColor
+{
+    Red,
+    Green,
+    Gold
+}
+
+public class Key : PickUp
 {
     public KeyColor color;
 
@@ -11,10 +18,9 @@ public class Key : PickupController
         GameManager.gameManager.AddKey(color);
         Destroy(this.gameObject);
     }
-}
-public enum KeyColor
-{
-    Red,
-    Green,
-    Purple
+
+    void Update()
+    {
+        Rotation();
+    }
 }

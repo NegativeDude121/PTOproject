@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8684816844563952111}
   - component: {fileID: 4365338757845807488}
   - component: {fileID: 880641476852837856}
-  - component: {fileID: 2533978445163880240}
+  - component: {fileID: 3552653132683317013}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: PickUp
@@ -96,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2533978445163880240
+--- !u!114 &3552653132683317013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3095355983005318413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e890b05ed7cbc674884670106907fe73, type: 3}
+  m_Script: {fileID: 11500000, guid: c4882818cb15148439b8c44fc2f3c6b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 5

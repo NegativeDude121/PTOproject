@@ -4,49 +4,50 @@ using UnityEngine;
 
 public class PortalTeleport : MonoBehaviour
 {
-	public Transform player;
-	public Transform reciever;
+    public Transform player;
+    public Transform receiver; //nasz cel - portal
 
-	private bool isPlayerOverlapping = false;
+    private bool playerIsOverlapping = false;
 
-	private void FixedUpdate()
-	{
-		Teleportation();
-	}
+    private void FixedUpdate()
+    {
+        Teleportation();
+    }
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if(other.tag == "Player")
-		{
-			isPlayerOverlapping = true;
-		}
-	}
-	private void OnTriggerExit(Collider other)
-	{
-		if (other.tag == "Player")
-		{
-			isPlayerOverlapping = false;
-		}
-	}
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            playerIsOverlapping = true;
+        }
+    }
 
-	void Teleportation()
-	{
-		if (isPlayerOverlapping)
-		{
-			Vector3 portalToPlayer = player.position - transform.position;
-			float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            playerIsOverlapping = false;
+        }
+    }
 
-			if(dotProduct < 0f)
-			{
-				float rotationDiff = -Quaternion.Angle(transform.rotation, reciever.rotation);
-				rotationDiff = rotationDiff + 180;
-				player.Rotate(Vector3.up, rotationDiff);
+    void Teleportation()
+    {
+        if(playerIsOverlapping)
+        {
+            Vector3 portalToPlayer = player.position - transform.position;
+            float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
 
-				Vector3 positionOffset = Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer;
-				player.position = reciever.position + positionOffset;
-			}
+            if(dotProduct < 0f)
+            {
+                float rotationDiff = -Quaternion.Angle(transform.rotation, receiver.rotation);
+                rotationDiff += 180;
+                player.Rotate(Vector3.up, rotationDiff);
 
-			isPlayerOverlapping = false;
-		}
-	}
+                Vector3 positionOffset = Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer;
+                player.position = receiver.position + positionOffset;
+
+                playerIsOverlapping = false;
+            }
+        }
+    }
 }
