@@ -22,6 +22,6 @@ public class PickUp : MonoBehaviour
 
     public void Rotation()
     {
-        transform.Rotate(new Vector3(1f, 0, 0));
+        transform.Rotate(new Vector3(0f, 1f, 0));
     }
 }
