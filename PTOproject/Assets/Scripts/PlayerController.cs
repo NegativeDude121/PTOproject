@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
 
     [SerializeField]
+    float fallSpeed = 12f;
+
+    [SerializeField]
     float speed = 12f;
 
     Vector3 velocity;
@@ -31,6 +34,8 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z; // moving with object's rotation
         //Vector3 move = Vector3.right * x + Vector3.forward * z; // ignore rotation
         characterController.Move(move * speed * Time.deltaTime);
+        Vector2 fall = transform.up * -fallSpeed;
+        characterController.Move(fall * Time.deltaTime);
 
         RaycastHit raycastHit;
         if (Physics.Raycast(
