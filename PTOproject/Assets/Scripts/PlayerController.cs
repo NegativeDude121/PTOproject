@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
             switch(terrainType)
             {
                 case "Low":
-                    speed = 3;
+                    speed = 9;
                     break;
                 case "High":
                     speed = 20;

@@ -29,7 +29,7 @@ public class LevelLayoutGenerator : MonoBehaviour
 
             if (child.childCount > 0)
             {
-                foreach (Transform grandchild in transform)
+                foreach (Transform grandchild in child.transform)
                 {
                     if (child.tag == "Wall")
                     {

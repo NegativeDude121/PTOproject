@@ -15,6 +15,13 @@ public class GameManager : MonoBehaviour
     public int greenKey = 0;
     public int goldKey = 0;
 
+    AudioSource audioSource;
+
+    public AudioClip pauseClip;
+    public AudioClip victoryClip;
+    public AudioClip defeatClip;
+    public AudioClip resumeClip;
+
     void Start()
     {
         if(gameManager == null)
@@ -28,6 +35,14 @@ public class GameManager : MonoBehaviour
         }
 
         InvokeRepeating("Stopper", 0, 1);
+
+        audioSource.GetComponent<AudioSource>();
+    }
+
+    public void PlayClip(AudioClip audioClip)
+    {
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
 
     void Update()
