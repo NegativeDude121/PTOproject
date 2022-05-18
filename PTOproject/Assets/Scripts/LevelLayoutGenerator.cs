@@ -33,7 +33,7 @@ public class LevelLayoutGenerator : MonoBehaviour
                 {
                     if (child.tag == "Wall")
                     {
-                        grandchild.gameObject.GetComponent<Renderer>().material = child.gameObject.GetComponent<Renderer>().material;                     
+                        grandchild.gameObject.GetComponent<Renderer>().sharedMaterial = child.gameObject.GetComponent<Renderer>().sharedMaterial;                     
                            
                     }
                 }

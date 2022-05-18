@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
         InvokeRepeating("Stopper", 0, 1);
 
-        audioSource.GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void PlayClip(AudioClip audioClip)
@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        PlayClip(pauseClip);
         Debug.Log("Game Paused");
         Time.timeScale = 0f;
         gamePaused = true;
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        PlayClip(resumeClip);
         Debug.Log("Game Resumed");
         Time.timeScale = 1f;
         gamePaused = false;
@@ -102,10 +104,12 @@ public class GameManager : MonoBehaviour
         CancelInvoke("Stopper");
         if (win)
         {
+            PlayClip(victoryClip);
             Debug.Log("You win!!! Reload?");
         }
         else
         {
+            PlayClip(defeatClip);
             Debug.Log("You lose!!! Reload?");
         }
     }

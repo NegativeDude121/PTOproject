@@ -134,6 +134,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 6678212498047248504}
   doorColor: 2
+  red: {fileID: -4576068083109919760, guid: 314cbd7b000c3224c8868a950dcf034e, type: 3}
+  green: {fileID: 1589487249450911417, guid: 811aef55587158042bb2495691d08d5e, type: 3}
+  gold: {fileID: 3548951601036501923, guid: 6fc843ed8fac59246aa7e3ba695125b4, type: 3}
+  myLock: {fileID: 6678212496805752215}
 --- !u!1 &6678212496805752218
 GameObject:
   m_ObjectHideFlags: 0

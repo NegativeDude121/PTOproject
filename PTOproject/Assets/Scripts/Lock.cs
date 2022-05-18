@@ -10,8 +10,15 @@ public class Lock : MonoBehaviour
     bool locked = false;
     Animator key;
 
+    public Material red;
+    public Material green;
+    public Material gold;
+
+    public Renderer myLock;
+
     private void Start()
     {
+        SetMyColour();
         key = GetComponent<Animator>();
     }
 
@@ -20,6 +27,28 @@ public class Lock : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && canIOpen == true && locked == false)
         {
             key.SetBool("useKey", KeyCheck());
+        }
+    }
+
+    void SetMyColour()
+    {
+        switch (doorColor)
+        {
+            case KeyColor.Red:
+                Material[] redMaterials = { red, red, red, red };
+                GetComponent<Renderer>().materials = redMaterials;
+                myLock.material = red;
+                break;
+            case KeyColor.Green:
+                Material[] greenMaterials = { green, green, green, green };
+                GetComponent<Renderer>().materials = greenMaterials;
+                myLock.material = green;
+                break;
+            case KeyColor.Gold:
+                Material[] goldMaterials = { gold, gold, gold, gold };
+                GetComponent<Renderer>().materials = goldMaterials;
+                myLock.material = gold;
+                break;
         }
     }
 

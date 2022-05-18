@@ -14,6 +14,7 @@ public class Clock : PickUp
             sign = 1;
         else
             sign = -1;
+        GameManager.gameManager.PlayClip(pickupClip);
         GameManager.gameManager.AddTime((int)time * sign);
         Destroy(this.gameObject);
     }

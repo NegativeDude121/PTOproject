@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4614092708338247201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -112,4 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5e36144d9a4dc4eb08d8a57e4fa0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupClip: {fileID: 8300000, guid: fc93a58ab2aadc9499af6caac5b5ed8b, type: 3}
+  red: {fileID: 5024317788110480505, guid: 314cbd7b000c3224c8868a950dcf034e, type: 3}
+  green: {fileID: 1589487249450911417, guid: 811aef55587158042bb2495691d08d5e, type: 3}
+  gold: {fileID: 3548951601036501923, guid: 6fc843ed8fac59246aa7e3ba695125b4, type: 3}
   color: 2

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+
+    public AudioClip pickupClip;
 
     void Update()
     {
@@ -16,6 +14,7 @@ public class PickUp : MonoBehaviour
 
     public virtual void Picked()
     {
+        GameManager.gameManager.PlayClip(pickupClip);
         Debug.Log("Picked");
         Destroy(this.gameObject);
     }
